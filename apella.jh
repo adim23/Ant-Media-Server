@@ -1,0 +1,697 @@
+entity AplSpace {
+    uid String required,
+    name String required,
+    description TextBlob,
+    parent String,
+    spaceType SpaceTypes,
+    spaceStatus SpaceStatus,
+    tags String,
+    metadata TextBlob,
+    email String,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity AplAuditing {
+    uid String required,
+    entityName String required,
+    entityUid String required,
+    action AuditActions required,
+    actionDate ZonedDateTime required,
+    metadata TextBlob,
+    ipAddress String,
+    extraInfo String,
+    sessionId String
+}
+
+entity AplActivity {
+    uid String required,
+    entityName String required,
+    entityUid String required,
+    verb String required,
+    actionDate ZonedDateTime required,
+    actionUser ZonedDateTime,
+    activity String required,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity Relation {
+    uid String required,
+    fromEntity String required,
+    fromEntityUid String required,
+    toEntity String required,
+    toEntityUid String required,
+    relationDate ZonedDateTime required,
+    relation String required,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity Channel {
+    uid String required,
+    displayName String required,
+    name String required,
+    header String,
+    purpose TextBlob,
+    type ChannelType required,
+    tags String,
+    entityName String required,
+    entityUid String required,
+    email String,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity Post {
+    uid String required,
+    body String required,
+    editAt ZonedDateTime required,
+    attachments String,
+    hasReactions Boolean,
+    tags String,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity Project {
+    uid String required,
+    code String required,
+    title String required,
+    description TextBlob,
+    scheduledStartDate ZonedDateTime,
+    scheduledEndDate ZonedDateTime,
+    actualStartDate ZonedDateTime,
+    actualEndDate ZonedDateTime,
+    percentage Float,
+    status ProjectStatus required,
+    attachments String,
+    tags String,
+    email String,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity Task {
+    uid String required,
+    code String required,
+    title String required,
+    description TextBlob,
+    actualStartDate ZonedDateTime,
+    actualEndDate ZonedDateTime,
+    scheduledStartDate ZonedDateTime,
+    scheduledEndDate ZonedDateTime,
+    relatedTo String,
+    blockedBy String,
+    completed Boolean,
+    percentage Float,
+    status TaskStatus required,
+    attachments String,
+    tags String,
+    email String,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity Issue {
+    uid String required,
+    code String,
+    title String required,
+    description TextBlob,
+    shortDescription String,
+    status IssueStatus required,
+    issueType IssueType required,
+    attachments String,
+    tags String,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity Calendar {
+    uid String required,
+    name String required,
+    description TextBlob,
+    created ZonedDateTime required,
+    email String,
+    tags String,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity AplEvent {
+    uid String required,
+    title String required,
+    body TextBlob,
+    eventDate ZonedDateTime,
+    eventFinish ZonedDateTime,
+    location String required,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity EventAttendants {
+    uid String required,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity Person {
+    uid String required,
+    firstName String required,
+    lastName String required,
+    username String required,
+    password String required,
+    externalUser Boolean required,
+    email String,
+    phoneNumber String,
+    mobile String,
+    profile TextBlob,
+    picture ImageBlob,
+    tags String,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity Team {
+    uid String required,
+    name String required,
+    displayName String required,
+    description TextBlob,
+    type TeamType,
+    companyName String,
+    tags String,
+    email String,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity AplFile {
+    uid String required,
+    description String,
+    tags String,
+    path String required,
+    filename String required,
+    thumbnailPath String,
+    previewPath String,
+    extension String,
+    mime String,
+    size Long required,
+    width Integer,
+    height Integer,
+    hasPreviewImage Boolean,
+    version String,
+    compressed Long,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity AplFolder {
+    uid String required,
+    folderName String required,
+    description String,
+    parent String,
+    tags String,
+    path String required,
+    email String,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity AplPage {
+    uid String required,
+    title String required,
+    tags String,
+    body TextBlob required,
+    status AplPageStatus required,
+    publishDate ZonedDateTime,
+    attachments String,
+    email String,
+    version String required,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity Wiki {
+    uid String required,
+    title String required,
+    tags String,
+    body TextBlob required,
+    version String required,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity Notebook {
+    uid String required,
+    title String required,
+    description TextBlob,
+    shortDescription String,
+    tags String,
+    email String,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity StationSettings {
+    stationUid String required,
+    name String required,
+    registeredOn ZonedDateTime required,
+    tags String,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity Satellite {
+    uid String required,
+    name String required,
+    ipAddress String,
+    registeredOn ZonedDateTime,
+    tags String,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity AplSync {
+    uid String required,
+    syncData String,
+    createAt ZonedDateTime required,
+}
+
+entity SyncLog {
+    uid String required,
+    AplliedDate ZonedDateTime,
+    status SyncLogStatus,
+    statusText String,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity Acl {
+    uid String required,
+    entityName String required,
+    entityUid String required,
+    opView Boolean required,
+    opInsert Boolean required,
+    opUpdate Boolean required,
+    opDelete Boolean required,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity AplMessage {
+    uid String required,
+    title String required,
+    body TextBlob,
+    viewed Boolean,
+    viewedOn ZonedDateTime,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity Notification {
+    uid String required,
+    title String required,
+    body String,
+    viewed Boolean,
+    viewedOn ZonedDateTime,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity MailAccount {
+    uid String required,
+    name String required,
+    protocol String required,
+    server String required,
+    username String required,
+    password String,
+    port Integer,
+    smtpServer String,
+    smtpUsername String required,
+    smtpPassword String,
+    smtpPort Integer,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity MailFolder {
+    uid String required,
+    folderName String required,
+    tags String,
+    parent String,
+    folderType MailFolderTypes required,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity MailMessage {
+    uid String required,
+    mailUid String,
+    subject String,
+    body TextBlob,
+    attachments String,
+    recipientFrom String,
+    recipientTo String,
+    recipientCc String,
+    recipientBcc String,
+    replyTo String,
+    messageId String,
+    dateOf ZonedDateTime,
+    received ZonedDateTime,
+    headers String,
+    size Long,
+    viewed Boolean,
+    deleted Boolean,
+    snippet String,
+    unread Boolean,
+    starred Boolean,
+    draft Boolean,
+    version Integer,
+    threadId String,
+    replyToMessageId String,
+    tags String,
+    metadata TextBlob,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity ProjectTasks {
+    uid String required,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity SatelliteSpace {
+    uid String required,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity Mention {
+    uid String required,
+    entityName String required,
+    entityUid String required,
+    mentionDate ZonedDateTime,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity TeamMember {
+    uid String required,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity UserStatus {
+    uid String required,
+    status UserStatusValues,
+    manual Boolean,
+    lastActivityAt ZonedDateTime,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+entity Reaction {
+    uid String required,
+    emojiName String,
+    entityName String required,
+    entityUid String required,
+    createAt ZonedDateTime required,
+    updateAt ZonedDateTime,
+    deleteAt ZonedDateTime
+}
+
+    
+enum UserStatusValues {
+    OFFLINE, ONLINE, AWAY
+}
+
+enum SyncLogStatus {
+    SUCCESS, ERROR, DEFFERED
+}
+
+enum Language {
+    FRENCH, ENGLISH, GREEK
+}
+
+enum ChannelType {
+    PUBLIC, PRIVATE, DIRECT, GROUP, TEAM, PROJECT, SPACE
+}
+
+enum ProjectStatus {
+    INACTIVE, NOT_STARTED, IN_PROGRESS, CLOSED, ARCHIVED, REOPENED, DELETED
+}
+
+enum TaskStatus {
+    INACTIVE, NOT_STARTED, IN_PROGRESS, CLOSED, ARCHIVED, REOPENED, DELETED
+}
+
+enum AplPageStatus {
+    PUBLISHED, UNPUBLISHED, ARCHIVED, DELETED
+}
+
+enum MailFolderTypes {
+    INBOX, SENT, DRAFT, TRASH, OUTBOX, JUNK, ARCHIVE
+}
+
+enum IssueStatus {
+    INACTIVE, NOT_STARTED, IN_PROGRESS, CLOSED, ARCHIVED, REOPENED, DELETED
+}
+
+enum IssueType {
+    BUG, FEATURE, ENHANCEMENT, REQUEST
+}
+
+enum TeamType {
+    OPEN, INVITE
+}
+
+enum SpaceStatus {
+    INACTIVE, ACTIVE, DELETED
+}
+
+enum SpaceTypes {
+    PUBLIC, SATELLITE
+}
+
+enum AuditActions {
+    CREATE, UPDATE, DELETE, EXPORT, IMPORT, DOWNLOAD, UPLOAD, READ
+}
+
+relationship ManyToOne {
+    Acl{team} to Team,
+    Acl{user} to User,
+    AplAuditing{actionUser} to User,
+    AplFile{folder} to AplFolder,
+    Issue{project} to Project,
+    Issue{assignedTo} to User,
+    MailAccount{owner} to User,
+    MailFolder{account} to MailAccount,
+    MailMessage{folder} to MailFolder,
+    AplMessage{fromTeam} to Team,
+    AplMessage{fromUser} to User,
+    AplMessage{toTeam} to Team,
+    AplMessage{toUser} to User,
+    Notebook{owner} to User,
+    Notification{team} to Team,
+    Notification{forUser} to User,
+    AplPage{actionUser} to User,
+    AplPage{notebook} to Notebook,
+    Person{space} to AplSpace,
+    Person{user} to User,
+    Post{channel} to Channel,
+    Post{actionUser} to User,
+    Project{owner} to User,
+    Project{team} to Team,
+    ProjectTasks{project} to Project,
+    ProjectTasks{task} to Task,
+    Relation{actionUser} to User,
+    Reaction{user} to User,
+    AplSpace{owner} to User,
+    AplSync{origin} to Satellite,
+    AplSync{actionUser} to User,
+    SyncLog{sync} to AplSync,
+    SyncLog{satellite} to Satellite,
+    SyncLog{sync} to AplSync,
+    Task{owner} to User,
+    Task{team} to Team,
+    Task{assignedTo} to User,
+    Task{issue} to Issue,
+    TeamMember{team} to Team,
+    TeamMember{user} to User,
+    UserStatus{user} to User,
+    Wiki{project} to Project,
+    Calendar{owner} to User,
+    Calendar{team} to Team,
+    Calendar{space} to AplSpace,
+    Calendar{project} to Project,
+    AplEvent{calendar} to Calendar,
+    SatelliteSpace{satellite} to Satellite,
+    SatelliteSpace{space} to AplSpace,
+    Channel{space} to AplSpace,
+    Project{space} to AplSpace,
+    Person{space} to AplSpace,
+    Team{space} to AplSpace,
+    AplFolder{space} to AplSpace,
+    Notebook{space} to AplSpace,
+    EventAttendants{user} to User,
+    EventAttendants{Aplevent} to AplEvent,
+    AplSpace{createBy} to User,
+    AplSpace{updateBy} to User,
+    AplSpace{deleteBy} to User,
+    Relation{createBy} to User,
+    Relation{updateBy} to User,
+    Relation{deleteBy} to User,
+    Channel{createBy} to User,
+    Channel{updateBy} to User,
+    Channel{deleteBy} to User,
+    Post{createBy} to User,
+    Post{updateBy} to User,
+    Post{deleteBy} to User,
+    Project{createBy} to User,
+    Project{updateBy} to User,
+    Project{deleteBy} to User,
+    Task{createBy} to User,
+    Task{updateBy} to User,
+    Task{deleteBy} to User,
+    Issue{createBy} to User,
+    Issue{updateBy} to User,
+    Issue{deleteBy} to User,
+    Person{createBy} to User,
+    Person{updateBy} to User,
+    Person{deleteBy} to User,
+    Team{createBy} to User,
+    Team{updateBy} to User,
+    Team{deleteBy} to User,
+    AplFile{createBy} to User,
+    AplFile{updateBy} to User,
+    AplFile{deleteBy} to User,
+    AplFolder{createBy} to User,
+    AplFolder{updateBy} to User,
+    AplFolder{deleteBy} to User,
+    AplPage{createBy} to User,
+    AplPage{updateBy} to User,
+    AplPage{deleteBy} to User,
+    Notebook{createBy} to User,
+    Notebook{updateBy} to User,
+    Notebook{deleteBy} to User,
+    StationSettings{createBy} to User,
+    StationSettings{updateBy} to User,
+    StationSettings{deleteBy} to User,
+    AplSync{createBy} to User,
+    AplSync{updateBy} to User,
+    AplSync{deleteBy} to User,
+    Acl{createBy} to User,
+    Acl{updateBy} to User,
+    Acl{deleteBy} to User,
+    AplMessage{createBy} to User,
+    AplMessage{updateBy} to User,
+    AplMessage{deleteBy} to User,
+    Notification{createBy} to User,
+    Notification{updateBy} to User,
+    Notification{deleteBy} to User,
+    MailFolder{createBy} to User,
+    MailFolder{updateBy} to User,
+    MailFolder{deleteBy} to User,
+    MailMessage{createBy} to User,
+    MailMessage{updateBy} to User,
+    MailMessage{deleteBy} to User,
+    MailAccount{createBy} to User,
+    MailAccount{updateBy} to User,
+    MailAccount{deleteBy} to User,
+    ProjectTasks{createBy} to User,
+    ProjectTasks{updateBy} to User,
+    ProjectTasks{deleteBy} to User,
+    Mention{createBy} to User,
+    Mention{updateBy} to User,
+    Mention{deleteBy} to User,
+    TeamMember{createBy} to User,
+    TeamMember{updateBy} to User,
+    TeamMember{deleteBy} to User,
+    UserStatus{createBy} to User,
+    UserStatus{updateBy} to User,
+    UserStatus{deleteBy} to User,
+    Calendar{createBy} to User,
+    Calendar{updateBy} to User,
+    Calendar{deleteBy} to User,
+    AplEvent{createBy} to User,
+    AplEvent{updateBy} to User,
+    AplEvent{deleteBy} to User,
+    EventAttendants{createBy} to User,
+    EventAttendants{updateBy} to User,
+    EventAttendants{deleteBy} to User,
+    Satellite{createBy} to User,
+    Satellite{updateBy} to User,
+    Satellite{deleteBy} to User,
+    Reaction{createBy} to User,
+    Reaction{updateBy} to User,
+    Reaction{deleteBy} to User,
+    StationSettings{createBy} to User,
+    StationSettings{updateBy} to User,
+    StationSettings{deleteBy} to User,
+    SatelliteSpace{createBy} to User,
+    SatelliteSpace{updateBy} to User,
+    SatelliteSpace{deleteBy} to User
+}
+
+
+paginate all with pagination
+
+dto all with mapstruct
+
+service all with serviceImpl
